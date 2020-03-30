@@ -5,12 +5,6 @@ Library with a few useful computational geometry routines
 
 * QuadTree - 2d Spacial Index that can be used to quickly query for points within a area. This is great for optimizing collision detection between lots of objects, using the quadtree and help you quickly find objects close to you and only test those for collisions rather than test every object against every other object. For moving objects the quadtree is efficient enough that it can be rebuilt for each update frame.
 
-## Installation
-
-Use the 'go' command:
-
-    $go get github.com/taylorza/go-compgeo
-
 ## Examples
 
 ### Create a QuadTree and query it using rectangular and circular query boundaries
