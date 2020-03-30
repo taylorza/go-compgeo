@@ -1,4 +1,4 @@
-package prim2d
+package geom2d
 
 // Point represents a point with an X and Y coordinate. Point satisfies the Locator interface.
 type Point struct {

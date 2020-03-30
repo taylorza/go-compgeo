@@ -1,4 +1,4 @@
-package prim2d
+package geom2d
 
 // Rectangle represents a rectangle. Rectangle satisfies the RangeMatcher interface.
 type Rectangle struct {

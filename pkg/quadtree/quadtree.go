@@ -1,6 +1,6 @@
 package quadtree
 
-import "github.com/taylorza/go-compgeo/pkg/prim2d"
+import "github.com/taylorza/go-compgeo/pkg/geom2d"
 
 // QuadTree data structure used to index spacial data. The index opimizes queries looking for all the points that are within a specified area.
 type QuadTree struct {
@@ -30,7 +30,7 @@ func MaxDepth(n int) Option {
 // that have a location that falls within the passed rectangle. Options that can be set
 // include the MaxDepth and MaxPerNode options which control the rate and maximum degree
 // of subdivision of the nodes in the quadtree.
-func New(rc prim2d.Rectangle, opts ...Option) *QuadTree {
+func New(rc geom2d.Rectangle, opts ...Option) *QuadTree {
 	const (
 		defaultMaxPerNode = 4
 		defaultMaxDepth   = 4
@@ -47,26 +47,26 @@ func New(rc prim2d.Rectangle, opts ...Option) *QuadTree {
 }
 
 // Insert inserts and indexes a item satisfying the Locator interface into the quadtree.
-func (q *QuadTree) Insert(p prim2d.Locator) bool {
+func (q *QuadTree) Insert(p geom2d.Locator) bool {
 	return q.root.insert(p)
 }
 
 // Query queries the quadtree for all items that fall within the boundary of the passed RangeMatcher.
-func (q *QuadTree) Query(r prim2d.RangeMatcher) []prim2d.Locator {
-	var result []prim2d.Locator
+func (q *QuadTree) Query(r geom2d.RangeMatcher) []geom2d.Locator {
+	var result []geom2d.Locator
 	q.root.query(r, &result)
 	return result
 }
 
 type quadTreeNode struct {
 	q        *QuadTree
-	rc       prim2d.Rectangle
+	rc       geom2d.Rectangle
 	children []*quadTreeNode
-	pts      []prim2d.Locator
+	pts      []geom2d.Locator
 	depth    int
 }
 
-func (n *quadTreeNode) insert(p prim2d.Locator) bool {
+func (n *quadTreeNode) insert(p geom2d.Locator) bool {
 	if !n.rc.Contains(p) {
 		return false
 	}
@@ -107,19 +107,19 @@ func (n *quadTreeNode) partition() {
 	n.pts = nil
 }
 
-func partitionRect(r prim2d.Rectangle) []prim2d.Rectangle {
-	rects := make([]prim2d.Rectangle, 4, 4)
+func partitionRect(r geom2d.Rectangle) []geom2d.Rectangle {
+	rects := make([]geom2d.Rectangle, 4, 4)
 	w2 := r.Width() / 2
 	h2 := r.Height() / 2
 
-	rects[0] = prim2d.NewRect(r.X(), r.Y(), w2, h2)
-	rects[1] = prim2d.NewRect(r.X()+w2, r.Y(), w2, h2)
-	rects[2] = prim2d.NewRect(r.X(), r.Y()+h2, w2, h2)
-	rects[3] = prim2d.NewRect(r.X()+w2, r.Y()+h2, w2, h2)
+	rects[0] = geom2d.NewRect(r.X(), r.Y(), w2, h2)
+	rects[1] = geom2d.NewRect(r.X()+w2, r.Y(), w2, h2)
+	rects[2] = geom2d.NewRect(r.X(), r.Y()+h2, w2, h2)
+	rects[3] = geom2d.NewRect(r.X()+w2, r.Y()+h2, w2, h2)
 	return rects
 }
 
-func (n *quadTreeNode) query(r prim2d.RangeMatcher, result *[]prim2d.Locator) {
+func (n *quadTreeNode) query(r geom2d.RangeMatcher, result *[]geom2d.Locator) {
 	if !r.Intersects(n.rc) {
 		return
 	}

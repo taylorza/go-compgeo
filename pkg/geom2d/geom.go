@@ -1,4 +1,4 @@
-package prim2d
+package geom2d
 
 // Locator interface represents any object that can be located by an X and Y coordinate
 type Locator interface {

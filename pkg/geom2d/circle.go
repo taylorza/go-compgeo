@@ -1,4 +1,4 @@
-package prim2d
+package geom2d
 
 // Circle represents a circle. Circle satisfies the RangeMatcher interface.
 type Circle struct {

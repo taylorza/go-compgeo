@@ -1,4 +1,4 @@
-package prim2d
+package geom2d
 
 import (
 	"testing"
@@ -92,7 +92,7 @@ func Test_RectangleContains(t *testing.T) {
 	}
 }
 
-func TestRectangleRectangleIntersect(t *testing.T) {
+func Test_RectangleRectangleIntersect(t *testing.T) {
 	c := NewRect(0, 0, 50, 60)
 
 	if !c.Intersects(NewRect(-5, -5, 10, 10)) {
