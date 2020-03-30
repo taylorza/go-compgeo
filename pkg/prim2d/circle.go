@@ -1,6 +1,6 @@
 package prim2d
 
-// Circle represents a circle. Circle satifies the RangeMatcher interface.
+// Circle represents a circle. Circle satisfies the RangeMatcher interface.
 type Circle struct {
 	x, y, r float32
 }

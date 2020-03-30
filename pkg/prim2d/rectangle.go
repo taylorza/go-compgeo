@@ -1,6 +1,6 @@
 package prim2d
 
-// Rectangle represents a rectangle. Rectangle satifies the RangeMatcher interface.
+// Rectangle represents a rectangle. Rectangle satisfies the RangeMatcher interface.
 type Rectangle struct {
 	x, y, w, h float32
 }

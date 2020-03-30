@@ -1,7 +1,5 @@
 package prim2d
 
-import "math"
-
 // Locator interface represents any object that can be located by an X and Y coordinate
 type Locator interface {
 	//
@@ -15,6 +13,7 @@ type RangeMatcher interface {
 	Intersects(r Rectangle) bool
 }
 
+// Utility functions used in the primitives
 func clamp(v, min, max float32) float32 {
 	if v < min {
 		v = min
@@ -36,8 +35,4 @@ func max(x, y float32) float32 {
 		return x
 	}
 	return y
-}
-
-func eq(x, y float32) bool {
-	return math.Abs(float64(x-y)) > math.SmallestNonzeroFloat64
 }
