@@ -58,6 +58,22 @@ func (q *QuadTree) Query(r geom2d.RangeMatcher) []geom2d.Locator {
 	return result
 }
 
+// Rects returns all the rectangles of the quadtree
+func (q *QuadTree) Rects() []geom2d.Rectangle {
+	var queue []*quadTreeNode
+	var rects []geom2d.Rectangle
+	queue = append(queue, q.root)
+	for len(queue) > 0 {
+		n := queue[0]
+		queue = queue[1:]
+		rects = append(rects, n.rc)
+		for _, c := range n.children {
+			queue = append(queue, c)
+		}
+	}
+	return rects
+}
+
 type quadTreeNode struct {
 	q        *QuadTree
 	rc       geom2d.Rectangle

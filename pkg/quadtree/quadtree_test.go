@@ -90,6 +90,19 @@ func Test_QuadTreeQueryCircle(t *testing.T) {
 	}
 }
 
+func Test_QuadTreeRects(t *testing.T) {
+	qt := New(geom2d.NewRect(0, 0, 100, 100), MaxPerNode(4), MaxDepth(4))
+
+	for x := 0; x < 100; x += 10 {
+		for y := 0; y < 100; y += 10 {
+			qt.Insert(geom2d.NewPoint(float32(x), float32(y)))
+		}
+	}
+
+	r := qt.Rects()
+	_ = r
+}
+
 func Benchmark_Quadtree(b *testing.B) {
 	qt := New(geom2d.NewRect(0, 0, 100, 100))
 

@@ -52,12 +52,12 @@ func (r Rectangle) Bottom() float32 {
 
 // Contains returns true if the passed locator is within the boundaries of the rectangle.
 func (r Rectangle) Contains(p Locator) bool {
-	return r.Left() <= p.X() && r.Right() > p.X() &&
-		r.Top() <= p.Y() && r.Bottom() > p.Y()
+	return r.x <= p.X() && (r.x+r.w) > p.X() &&
+		r.y <= p.Y() && (r.y+r.h) > p.Y()
 }
 
 // Intersects returns true if the two rectangles intersect each other
 func (r Rectangle) Intersects(o Rectangle) bool {
-	return r.Left() < o.Right() && r.Right() > o.Left() &&
-		r.Top() < o.Bottom() && r.Bottom() > o.Top()
+	return r.x < (o.x+o.w) && (r.x+r.w) > o.x &&
+		r.y < (o.y+o.h) && (r.y+r.h) > o.y
 }
