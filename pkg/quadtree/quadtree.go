@@ -46,6 +46,11 @@ func New(rc geom2d.Rectangle, opts ...Option) *QuadTree {
 	return q
 }
 
+// Clear clears all items from the quadtree
+func (q *QuadTree) Clear() {
+	q.root = &quadTreeNode{q: q, rc: q.root.rc, depth: 0}
+}
+
 // Insert inserts and indexes a item satisfying the Locator interface into the quadtree.
 func (q *QuadTree) Insert(p geom2d.Locator) bool {
 	return q.root.insert(p)
