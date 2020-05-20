@@ -74,7 +74,7 @@ func Test_QuadTreeQueryCircle(t *testing.T) {
 
 	for x := 0; x < 100; x += 10 {
 		for y := 0; y < 100; y += 10 {
-			qt.Insert(geom2d.NewPoint(float32(x), float32(y)))
+			qt.Insert(geom2d.NewPoint(float64(x), float64(y)))
 		}
 	}
 
@@ -95,7 +95,7 @@ func Test_QuadTreeRects(t *testing.T) {
 
 	for x := 0; x < 100; x += 10 {
 		for y := 0; y < 100; y += 10 {
-			qt.Insert(geom2d.NewPoint(float32(x), float32(y)))
+			qt.Insert(geom2d.NewPoint(float64(x), float64(y)))
 		}
 	}
 
@@ -106,13 +106,16 @@ func Test_QuadTreeRects(t *testing.T) {
 func Benchmark_Quadtree(b *testing.B) {
 	qt := New(geom2d.NewRect(0, 0, 100, 100))
 
-	for i := 0; i < 1000; i++ {
-		qt.Insert(geom2d.NewPoint(float32(rand.Intn(100)), float32(rand.Intn(100))))
-	}
 	for i := 0; i < b.N; i++ {
+		qt.Clear()
+
+		for j := 0; j < 1000; j++ {
+			qt.Insert(geom2d.NewPoint(float64(rand.Intn(100)), float64(rand.Intn(100))))
+		}
+
 		for x := 0; x < 90; x += 10 {
 			for y := 0; y < 90; y += 10 {
-				qt.Query(geom2d.NewRect(float32(x), float32(y), 9, 9))
+				qt.Query(geom2d.NewRect(float64(x), float64(y), 9, 9))
 			}
 		}
 	}

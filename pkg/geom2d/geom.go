@@ -3,8 +3,8 @@ package geom2d
 // Locator interface represents any object that can be located by an X and Y coordinate
 type Locator interface {
 	//
-	X() float32
-	Y() float32
+	X() float64
+	Y() float64
 }
 
 // RangeMatcher interface represents objects that define ranges that will be used to query spacial data.
@@ -14,7 +14,7 @@ type RangeMatcher interface {
 }
 
 // Utility functions used in the primitives
-func clamp(v, min, max float32) float32 {
+func clamp(v, min, max float64) float64 {
 	if v < min {
 		v = min
 	} else if v > max {
@@ -23,14 +23,14 @@ func clamp(v, min, max float32) float32 {
 	return v
 }
 
-func min(x, y float32) float32 {
+func min(x, y float64) float64 {
 	if x < y {
 		return x
 	}
 	return y
 }
 
-func max(x, y float32) float32 {
+func max(x, y float64) float64 {
 	if x > y {
 		return x
 	}

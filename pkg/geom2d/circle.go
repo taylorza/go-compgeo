@@ -2,11 +2,11 @@ package geom2d
 
 // Circle represents a circle. Circle satisfies the RangeMatcher interface.
 type Circle struct {
-	x, y, r float32
+	x, y, r float64
 }
 
 // NewCircle creates a circle object.
-func NewCircle(x, y, r float32) Circle {
+func NewCircle(x, y, r float64) Circle {
 	return Circle{x: x, y: y, r: r}
 }
 
@@ -28,16 +28,16 @@ func (c Circle) Intersects(o Rectangle) bool {
 }
 
 // X returns the X coordinate of the circle's center point.
-func (c Circle) X() float32 {
+func (c Circle) X() float64 {
 	return c.x
 }
 
 // Y returns the Y coordinate of the circle's center point.
-func (c Circle) Y() float32 {
+func (c Circle) Y() float64 {
 	return c.y
 }
 
 // R returns the radius of the circle.
-func (c Circle) R() float32 {
+func (c Circle) R() float64 {
 	return c.r
 }
